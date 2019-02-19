@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>2dnav</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="dist/main.css" />
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+</head>
+<body>
+  <div id="tools">
+    <button @click="onChangeModeClick('add_node')" :class="{ active: mode == 'add_node' }">Add node</button>
+    <button @click="onChangeModeClick('select_node')" :class="{ active: mode == 'select_node' }">Select node</button>
+    <button @click="onChangeModeClick('toggle_edge')" :class="{ active: mode == 'toggle_edge' }">Toggle edge</button>
+    <button @click="onChangeModeClick('move_node')" :class="{ active: mode == 'move_node' }">Move node</button>
+    <button @click="onChangeModeClick('remove_node')" :class="{ active: mode == 'remove_node' }">Remove node</button>
+    <canvas id="canvas" width="800" height="800" @click="onCanvasClick" @mousedown="onCanvasMouseDown"></canvas>
+  </div>
+  <script src="dist/main.js"></script>
+</body>
+</html>
