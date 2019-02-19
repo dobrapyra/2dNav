@@ -4,7 +4,7 @@ import List from './List';
 import DrawEngine from './drawEngine';
 
 new Vue({
-  el: '#tools',
+  el: '#app',
   data: {
     mode: 'add_node',
     graph: new Graph(),
@@ -44,6 +44,38 @@ new Vue({
       default: break;
       }
       this.drawEngine.draw();
+    },
+    onKeyDown(e) {
+      switch(e.key) {
+      case 'a':
+        this.onChangeModeClick('add_node');
+        break;
+      case 'd':
+      case 'r':
+        this.onChangeModeClick('remove_node');
+        break;
+      case 's':
+        this.onChangeModeClick('select_node');
+        break;
+      case 'e':
+        this.onChangeModeClick('toggle_edge');
+        break;
+      case 'm':
+      case 'g':
+        this.onChangeModeClick('move_node');
+        break;
+      case ',':
+        this.onChangeModeClick('set_src_node');
+        break;
+      case '.':
+        this.onChangeModeClick('set_dst_node');
+        break;
+      case 'f':
+      case ' ':
+        this.findPath();
+        break;
+      default: break;
+      }
     },
     onCanvasMouseDown(e) {
       switch(this.mode) {

@@ -10,17 +10,27 @@
   <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
 </head>
 <body>
-  <div id="tools">
-    <button @click="onChangeModeClick('add_node')" :class="{ active: mode == 'add_node' }">Add node</button>
-    <button @click="onChangeModeClick('select_node')" :class="{ active: mode == 'select_node' }">Select node</button>
-    <button @click="onChangeModeClick('toggle_edge')" :class="{ active: mode == 'toggle_edge' }">Toggle edge</button>
-    <button @click="onChangeModeClick('move_node')" :class="{ active: mode == 'move_node' }">Move node</button>
-    <button @click="onChangeModeClick('remove_node')" :class="{ active: mode == 'remove_node' }">Remove node</button>
-    <span>|</span>
-    <button @click="onChangeModeClick('set_src_node')" :class="{ active: mode == 'set_src_node' }">Set source node</button>
-    <button @click="onChangeModeClick('set_dst_node')" :class="{ active: mode == 'set_dst_node' }">Set target node</button>
-    <button @click="onFindPathClick">Find path</button>
-    <canvas id="canvas" width="800" height="800" @click="onCanvasClick" @mousedown="onCanvasMouseDown"></canvas>
+  <div id="app">
+    <div class="tools">
+      <button @click="onChangeModeClick('add_node')" :class="{ active: mode == 'add_node' }">Add node</button>
+      <button @click="onChangeModeClick('select_node')" :class="{ active: mode == 'select_node' }">Select node</button>
+      <button @click="onChangeModeClick('toggle_edge')" :class="{ active: mode == 'toggle_edge' }">Toggle edge</button>
+      <button @click="onChangeModeClick('move_node')" :class="{ active: mode == 'move_node' }">Move node</button>
+      <button @click="onChangeModeClick('remove_node')" :class="{ active: mode == 'remove_node' }">Remove node</button>
+      <span>|</span>
+      <button @click="onChangeModeClick('set_src_node')" :class="{ active: mode == 'set_src_node' }">Set source node</button>
+      <button @click="onChangeModeClick('set_dst_node')" :class="{ active: mode == 'set_dst_node' }">Set target node</button>
+      <button @click="onFindPathClick">Find path</button>
+    </div>
+    <canvas
+      tabindex="0"
+      id="canvas"
+      width="800"
+      height="800"
+      @click="onCanvasClick"
+      @mousedown="onCanvasMouseDown"
+      @keydown="onKeyDown"
+    ></canvas>
   </div>
   <script src="dist/main.js"></script>
 </body>
