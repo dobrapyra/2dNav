@@ -19,6 +19,7 @@
     <span>|</span>
     <button @click="onChangeModeClick('set_src_node')" :class="{ active: mode == 'set_src_node' }">Set source node</button>
     <button @click="onChangeModeClick('set_dst_node')" :class="{ active: mode == 'set_dst_node' }">Set target node</button>
+    <button @click="onFindPathClick">Find path</button>
     <canvas id="canvas" width="800" height="800" @click="onCanvasClick" @mousedown="onCanvasMouseDown"></canvas>
   </div>
   <script src="dist/main.js"></script>

@@ -1,5 +1,6 @@
 /* globals Vue */
 import Graph from './graph';
+import List from './List';
 import DrawEngine from './drawEngine';
 
 new Vue({
@@ -16,6 +17,9 @@ new Vue({
   methods: {
     onChangeModeClick(mode) {
       this.mode = mode;
+    },
+    onFindPathClick() {
+      this.findPath();
     },
     onCanvasClick(e) {
       switch(this.mode) {
@@ -107,6 +111,73 @@ new Vue({
         selectedNode.setPosition(e.offsetX, e.offsetY);
       });
       this.drawEngine.draw();
+    },
+    findPath() { 
+      let srcNode = null, dstNode = null,
+        openList = new List(),
+        closeList = new List(),
+        path = [], iterations = 0;
+
+      this.graph.nodes.forEach(node => {
+        node.setReferer(null);
+        node.setFlag('isPath', false);
+        node.setFlag('isActive', false);
+        if (node.isSrc) srcNode = node;
+        if (node.isDst) dstNode = node;
+      });
+
+      if( !srcNode ) {
+        console.warn('No source node');
+        return;
+      }
+
+      if( !dstNode ) {
+        console.warn('No target node');
+        return;
+      }
+
+      srcNode.setFGH(dstNode);
+      openList.add(srcNode);
+
+      while (!openList.isEmpty()) {
+        iterations++;
+
+        openList.sort((a, b) => (a.f - b.f));
+        const currentNode = openList.at(0);
+
+        openList.remove(currentNode);
+        closeList.add(currentNode);
+
+        currentNode.neighbors.forEach(node => {
+          if (closeList.has(node)) return;
+          if (openList.has(node)) {
+            if (node.checkIsBetterFGH(currentNode)) {
+              node.setReferer(currentNode);
+              node.setFGH(dstNode);
+            }
+            return;
+          }
+          node.setReferer(currentNode);
+          node.setFGH(dstNode);
+          openList.add(node);
+        });
+      }
+
+      console.log('Iteration: ', iterations);
+      if (closeList.has(dstNode)) {
+        let referer = dstNode;
+        while (referer) {
+          if (!referer.isDst && !referer.isSrc) referer.setFlag('isPath', true);
+          path.push(referer);
+          referer = referer.referer;
+        }
+        path.reverse();
+        console.log('Path length: ', dstNode.g);
+        console.dir(path);
+        this.drawEngine.draw();
+      } else {
+        console.warn('No path to target node');
+      }
     },
   }
 });
