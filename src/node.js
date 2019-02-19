@@ -5,14 +5,23 @@ class Node {
     this.id = id;
     this.neighbors = neighbors || [];
     this.isActive = false;
+    this.isSrc = false;
+    this.isDst = false;
   }
 
   addNeighbor(node) {
     this.neighbors.push(node);
   }
 
-  setActive(activeState) {
-    this.isActive = activeState;
+  setFlag(flag, flagState) {
+    if (flag === 'isActive') {
+      if (flagState) {
+        this.isSrc = false;
+        this.isDst = false;
+      }
+    }
+
+    this[flag] = flagState;
   }
 
   setPosition(x, y) {

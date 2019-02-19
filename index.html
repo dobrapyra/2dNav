@@ -16,6 +16,9 @@
     <button @click="onChangeModeClick('toggle_edge')" :class="{ active: mode == 'toggle_edge' }">Toggle edge</button>
     <button @click="onChangeModeClick('move_node')" :class="{ active: mode == 'move_node' }">Move node</button>
     <button @click="onChangeModeClick('remove_node')" :class="{ active: mode == 'remove_node' }">Remove node</button>
+    <span>|</span>
+    <button @click="onChangeModeClick('set_src_node')" :class="{ active: mode == 'set_src_node' }">Set source node</button>
+    <button @click="onChangeModeClick('set_dst_node')" :class="{ active: mode == 'set_dst_node' }">Set target node</button>
     <canvas id="canvas" width="800" height="800" @click="onCanvasClick" @mousedown="onCanvasMouseDown"></canvas>
   </div>
   <script src="dist/main.js"></script>

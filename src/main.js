@@ -23,13 +23,19 @@ new Vue({
         this.addNode(e);
         break;
       case 'select_node':
-        this.selectNode(e);
+        this.selectNode(e, 'isActive');
         break;
       case 'toggle_edge':
         this.toggleEdge(e);
         break;
       case 'remove_node':
         this.removeNode(e);
+        break;
+      case 'set_src_node':
+        this.selectNode(e, 'isSrc');
+        break;
+      case 'set_dst_node':
+        this.selectNode(e, 'isDst');
         break;
       default: break;
       }
@@ -45,7 +51,7 @@ new Vue({
       this.drawEngine.draw();
     },
     beginMove(e) {
-      this.selectNode(e);
+      this.selectNode(e, 'isActive');
       this.canvas.addEventListener('mousemove', this.moveNode);
       this.canvas.addEventListener('mouseup', this.endMove);
       this.canvas.addEventListener('mouseleave', this.endMove);
@@ -70,15 +76,15 @@ new Vue({
     },
     addNode(e) {
       this.graph.addNode(e.offsetX, e.offsetY);
-      this.selectNode(e);
+      this.selectNode(e, 'isActive');
     },
-    selectNode(e) {
+    selectNode(e, flag) {
       this.selectedNodes = [];
       this.eachNode(e, null, activeNode => {
         this.selectedNodes.push(activeNode);
-        activeNode.setActive(true);
+        activeNode.setFlag(flag, true);
       }, inactiveNode => {
-        inactiveNode.setActive(false);
+        inactiveNode.setFlag(flag, false);
       });
     },
     toggleEdge(e) {
