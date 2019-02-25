@@ -19,15 +19,36 @@ class DrawEngine {
 
     this.ctx.beginPath();
     this.ctx.fillStyle = '#686868';
-    const inactiveNodes = this.graph.nodes.filter(node => !node.isActive);
+    const inactiveNodes = this.graph.nodes.filter(node => !node.isActive && !node.isSrc && !node.isDst);
     inactiveNodes.forEach(node => node.draw(this.ctx));
     this.ctx.fill();
     this.ctx.closePath();
 
     this.ctx.beginPath();
-    this.ctx.fillStyle = '#54dc54';
+    this.ctx.fillStyle = '#53abdc';
     const activeNodes = this.graph.nodes.filter(node => node.isActive);
     activeNodes.forEach(node => node.draw(this.ctx));
+    this.ctx.fill();
+    this.ctx.closePath();
+
+    this.ctx.beginPath();
+    this.ctx.fillStyle = '#5cdc52';
+    const srcNodes = this.graph.nodes.filter(node => node.isSrc);
+    srcNodes.forEach(node => node.draw(this.ctx));
+    this.ctx.fill();
+    this.ctx.closePath();
+
+    this.ctx.beginPath();
+    this.ctx.fillStyle = '#dc5d52';
+    const dstNodes = this.graph.nodes.filter(node => node.isDst);
+    dstNodes.forEach(node => node.draw(this.ctx));
+    this.ctx.fill();
+    this.ctx.closePath();
+
+    this.ctx.beginPath();
+    this.ctx.fillStyle = '#dcd052';
+    const pathNodes = this.graph.nodes.filter(node => node.isPath);
+    pathNodes.forEach(node => node.draw(this.ctx));
     this.ctx.fill();
     this.ctx.closePath();
   }
