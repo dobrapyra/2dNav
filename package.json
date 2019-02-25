@@ -1,7 +1,7 @@
 {
-  "name": "physics",
+  "name": "2dnav",
   "version": "1.0.0",
-  "description": "",
+  "description": "2d graph creator and path finding using A* algorithm",
   "main": "src/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
