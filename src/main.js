@@ -159,12 +159,12 @@ new Vue({
       });
 
       if( !srcNode ) {
-        console.warn('No source node');
+        console.warn('No source node'); // eslint-disable-line no-console
         return;
       }
 
       if( !dstNode ) {
-        console.warn('No target node');
+        console.warn('No target node'); // eslint-disable-line no-console
         return;
       }
 
@@ -195,7 +195,7 @@ new Vue({
         });
       }
 
-      console.log('Iteration: ', iterations);
+      console.log('Iteration: ', iterations); // eslint-disable-line no-console
       if (closeList.has(dstNode)) {
         let referer = dstNode;
         while (referer) {
@@ -204,11 +204,11 @@ new Vue({
           referer = referer.referer;
         }
         path.reverse();
-        console.log('Path length: ', dstNode.g);
-        console.dir(path);
+        console.log('Path length: ', dstNode.g); // eslint-disable-line no-console
+        console.dir(path); // eslint-disable-line no-console
         this.drawEngine.draw();
       } else {
-        console.warn('No path to target node');
+        console.warn('No path to target node'); // eslint-disable-line no-console
       }
     },
   }
