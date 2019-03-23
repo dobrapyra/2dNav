@@ -1,4 +1,5 @@
 /* globals Vue */
+import './scss/main.scss';
 import Graph from './graph';
 import List from './List';
 import DrawEngine from './drawEngine';
