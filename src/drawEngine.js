@@ -6,7 +6,7 @@ class DrawEngine {
     this.h = this.canvas.height;
     this.graph = graph;
   }
-  
+
   draw() {
     this.ctx.clearRect(0, 0, this.w, this.h);
 

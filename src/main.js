@@ -1,4 +1,5 @@
 /* globals Vue */
+import './scss/main.scss';
 import Graph from './graph';
 import List from './List';
 import DrawEngine from './drawEngine';
@@ -22,67 +23,67 @@ new Vue({
       this.findPath();
     },
     onCanvasClick(e) {
-      switch(this.mode) {
-      case 'add_node':
-        this.addNode(e);
-        break;
-      case 'select_node':
-        this.selectNode(e, 'isActive');
-        break;
-      case 'toggle_edge':
-        this.toggleEdge(e);
-        break;
-      case 'remove_node':
-        this.removeNode(e);
-        break;
-      case 'set_src_node':
-        this.selectNode(e, 'isSrc');
-        break;
-      case 'set_dst_node':
-        this.selectNode(e, 'isDst');
-        break;
-      default: break;
+      switch (this.mode) {
+        case 'add_node':
+          this.addNode(e);
+          break;
+        case 'select_node':
+          this.selectNode(e, 'isActive');
+          break;
+        case 'toggle_edge':
+          this.toggleEdge(e);
+          break;
+        case 'remove_node':
+          this.removeNode(e);
+          break;
+        case 'set_src_node':
+          this.selectNode(e, 'isSrc');
+          break;
+        case 'set_dst_node':
+          this.selectNode(e, 'isDst');
+          break;
+        default: break;
       }
       this.drawEngine.draw();
     },
     onKeyDown(e) {
-      switch(e.key) {
-      case 'a':
-        this.onChangeModeClick('add_node');
-        break;
-      case 'd':
-      case 'r':
-        this.onChangeModeClick('remove_node');
-        break;
-      case 's':
-        this.onChangeModeClick('select_node');
-        break;
-      case 'e':
-        this.onChangeModeClick('toggle_edge');
-        break;
-      case 'm':
-      case 'g':
-        this.onChangeModeClick('move_node');
-        break;
-      case ',':
-        this.onChangeModeClick('set_src_node');
-        break;
-      case '.':
-        this.onChangeModeClick('set_dst_node');
-        break;
-      case 'f':
-      case ' ':
-        this.findPath();
-        break;
-      default: break;
+      switch (e.key) {
+        case 'a':
+          this.onChangeModeClick('add_node');
+          break;
+        case 'd':
+        case 'r':
+          this.onChangeModeClick('remove_node');
+          break;
+        case 's':
+          this.onChangeModeClick('select_node');
+          break;
+        case 'e':
+          this.onChangeModeClick('toggle_edge');
+          break;
+        case 'm':
+        case 'g':
+          this.onChangeModeClick('move_node');
+          break;
+        case ',':
+          this.onChangeModeClick('set_src_node');
+          break;
+        case '.':
+          this.onChangeModeClick('set_dst_node');
+          break;
+        case 'f':
+        case ' ':
+          this.findPath();
+          break;
+        default: break;
       }
     },
     onCanvasMouseDown(e) {
-      switch(this.mode) {
-      case 'move_node':
-        this.beginMove(e);
-        break;
-      default: break;
+      switch (this.mode) {
+        case 'move_node':
+          this.beginMove(e);
+          break;
+        default: break;
       }
       this.drawEngine.draw();
     },
@@ -144,7 +145,7 @@ new Vue({
       });
       this.drawEngine.draw();
     },
-    findPath() { 
+    findPath() {
       let srcNode = null, dstNode = null,
         openList = new List(),
         closeList = new List(),
@@ -158,12 +159,12 @@ new Vue({
         if (node.isDst) dstNode = node;
       });
 
-      if( !srcNode ) {
+      if (!srcNode) {
         console.warn('No source node'); // eslint-disable-line no-console
         return;
       }
 
-      if( !dstNode ) {
+      if (!dstNode) {
         console.warn('No target node'); // eslint-disable-line no-console
         return;
       }
