@@ -9,31 +9,12 @@ module.exports = {
     "sourceType": "module"
   },
   "rules": {
-    "indent": [
-      "error",
-      2
-    ],
-    "linebreak-style": [
-      "error",
-      "unix"
-    ],
-    "quotes": [
-      "error",
-      "single"
-    ],
-    "semi": [
-      "error",
-      "always"
-    ],
-    "no-trailing-spaces": [
-      "error"
-    ],
-    "no-multiple-empty-lines": [
-      "error", { "max": 1 }
-    ],
-    "eol-last": [
-      "error",
-      "always"
-    ]
+    "indent": [ "error", 2, { "SwitchCase": 1 } ],
+    "linebreak-style": [ "error", "unix" ],
+    "quotes": [ "error", "single" ],
+    "semi": [ "error", "always" ],
+    "no-trailing-spaces": [ "error" ],
+    "no-multiple-empty-lines": [ "error", { "max": 1 } ],
+    "eol-last": [ "error", "always" ]
   }
 };

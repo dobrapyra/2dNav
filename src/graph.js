@@ -35,8 +35,8 @@ class Graph {
 
   removeNode(node) {
     const edgesToRemove = this.edges.filter(edge => (
-      edge.a === node || edge.b === node)
-    );
+      edge.a === node || edge.b === node
+    ));
     edgesToRemove.forEach(edge => {
       this.removeEdge(edge);
     });
@@ -70,8 +70,7 @@ class Graph {
 
   hasEdge(a, b) {
     return this.edges.filter(edge => (
-      ( edge.a === a && edge.b === b ) || 
-      ( edge.a === b && edge.b === a )
+      ( edge.a === a && edge.b === b ) || ( edge.a === b && edge.b === a )
     ))[0];
   }
 
