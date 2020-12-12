@@ -10,14 +10,15 @@ module.exports = (env, args) => {
     devtool: devMode ? 'inline-source-map' : 'none',
     devServer: {
       contentBase: path.resolve(__dirname, '.'),
+      writeToDisk: true,
       port: 4000,
       open: true
     },
     entry: './src/main.js',
     output: {
-      path: path.resolve(__dirname, './dist'),
-      filename: 'main.js',
       // publicPath: './dist'
+      path: path.resolve(__dirname, './dist'),
+      filename: `main${(devMode ? '' : '.min')}.js`,
     },
     module: {
       rules: [
@@ -27,14 +28,15 @@ module.exports = (env, args) => {
           use: {
             loader: 'babel-loader',
             options: {
-              presets: ['env']
+              presets: ['@babel/preset-env']
             }
           }
         },
         {
           test: /\.s?css$/,
           use: [
-            devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+            // devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+            MiniCssExtractPlugin.loader,
             'css-loader',
             'sass-loader'
           ]
@@ -43,7 +45,7 @@ module.exports = (env, args) => {
     },
     plugins: [
       new MiniCssExtractPlugin({
-        filename: 'main.css'
+        filename: `main${(devMode ? '' : '.min')}.css`,
       })
     ]
   };
